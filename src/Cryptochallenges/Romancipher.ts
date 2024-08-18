@@ -7,10 +7,14 @@ console.log(emperor_messagesplit)
 for (let shift = 1; shift < 26; shift++) {
   let decryptedmessage = ""
   for (let i = 0; i < emperor_messagesplit.length; i++) {
-    let newAsciivalue = String.fromCharCode(
-      ((emperor_messagesplit[i].charCodeAt(0) + shift - 65) % 26) + 65
-    )
-    decryptedmessage += newAsciivalue
+    if (emperor_messagesplit[i] === " ") {
+      decryptedmessage += " "
+    } else {
+      let newAsciivalue = String.fromCharCode(
+        ((emperor_messagesplit[i].charCodeAt(0) + shift - 65) % 26) + 65
+      )
+      decryptedmessage += newAsciivalue
+    }
   }
   console.log(decryptedmessage)
 }
@@ -19,14 +23,18 @@ for (let shift = 1; shift < 26; shift++) {
 for (let shift = 1; shift < 26; shift++) {
   let decryptedmessage = ""
   for (let i = 0; i < emperor_messagesplit.length; i++) {
-    let asciiValue = emperor_messagesplit[i].charCodeAt(0)
-    let newAsciiValue
-    if (asciiValue - shift < 65) {
-      newAsciiValue = 90 - (65 - (asciiValue - shift)) + 1
+    if (emperor_messagesplit[i] === " ") {
+      decryptedmessage += " "
     } else {
-      newAsciiValue = asciiValue - shift
+      let asciiValue = emperor_messagesplit[i].charCodeAt(0)
+      let newAsciiValue
+      if (asciiValue - shift < 65) {
+        newAsciiValue = 90 - (65 - (asciiValue - shift)) + 1
+      } else {
+        newAsciiValue = asciiValue - shift
+      }
+      decryptedmessage += String.fromCharCode(newAsciiValue)
     }
-    decryptedmessage += String.fromCharCode(newAsciiValue)
   }
   console.log(decryptedmessage)
 }
